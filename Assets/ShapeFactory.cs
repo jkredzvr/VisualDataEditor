@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public struct Shape
-{
-    public string name;
-    public DateTime checkInTime;
-    public DateTime checkOutTime;
-    public int buildingId;
-}
+//public struct Shape
+//{
+//    public string name;
+//    public DateTime checkInTime;
+//    public DateTime checkOutTime;
+//    public int buildingId;
+//}
 
 public class ShapeFactory : MonoBehaviour
 { 
     public static ShapeFactory instance;
-    public Shape rectangle;
+    public Shape square;
     public Shape circle;
-    public Shape triange;
-    public List<Shape> shapes = new List<Shape>();
-
+    public Shape triangle;
+    public RectTransform parentCanvas;
+   
     void Awake()
     {
         //Check if instance already exists
@@ -49,18 +49,19 @@ public class ShapeFactory : MonoBehaviour
     {
         switch (shapeName)
         {
-            case "rectangle":
-                return Instantiate<Shape>rectangle;
-                break; 
+            case "square":
+                Shape new_square= Instantiate(square);
+                new_square.gameObject.transform.SetParent(parentCanvas.transform, false);
+                break;
             case "triangle":
-                statement(s);
+                Instantiate(triangle, parentCanvas.transform);
                 break;
             case "circle":
-                statement(s);
+                Instantiate(circle, parentCanvas.transform);
                 break;
             /* you can have any number of case statements */
-            default: /* Optional */
-                return null;
+            default: /* optional */
+                return;
         }
     }
 

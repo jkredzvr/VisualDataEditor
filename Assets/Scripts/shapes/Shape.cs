@@ -13,8 +13,6 @@ public class Shape :
 
     public bool isDragging { get; set; }
 
-	public Image imgSrc { get; set; }
-
 	// Use this for initialization
 	void Start () {
 		isDragging = true;
@@ -24,18 +22,21 @@ public class Shape :
 	void Update () {
 		if (isDragging) {
             gameObject.transform.position = Input.mousePosition;
-		}
+        }
 	}
 
     public void toggleIsDragging () {
-        isDragging = !isDragging;
+        //isDragging = !isDragging;
     }
 
     public void OnPointerDown (PointerEventData eventData) {
-        toggleIsDragging ();
+        isDragging = true;
+        //toggleIsDragging ();
     }
 
     public void OnPointerUp (PointerEventData eventData) {
-        toggleIsDragging ();
+        isDragging = false;
+        //toggleIsDragging ();
+        Debug.Log("not dragging");
     }
 }
