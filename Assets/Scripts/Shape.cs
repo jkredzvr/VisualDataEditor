@@ -21,7 +21,9 @@ public class Shape :
 	// Update is called once per frame
 	void Update () {
 		if (isDragging) {
-            gameObject.transform.position = Input.mousePosition;
+			Vector3 uiPos = Input.mousePosition;
+			uiPos.z = 0;
+			gameObject.transform.position = Camera.main.ScreenToWorldPoint(uiPos);
         }
 	}
 

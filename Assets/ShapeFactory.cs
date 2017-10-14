@@ -17,7 +17,8 @@ public class ShapeFactory : MonoBehaviour
     public Shape square;
     public Shape circle;
     public Shape triangle;
-    public RectTransform parentCanvas;
+	public  GameObject linePrefab;
+    public  RectTransform parentCanvas;
    
     void Awake()
     {
@@ -64,5 +65,9 @@ public class ShapeFactory : MonoBehaviour
                 return;
         }
     }
+
+	public GameObject CreateLine() {
+		return Instantiate (linePrefab, parentCanvas.transform);
+	}
 
 }
